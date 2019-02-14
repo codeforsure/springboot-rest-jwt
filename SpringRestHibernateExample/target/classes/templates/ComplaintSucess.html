@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p align ="right"><a href="/logout">Logout</a></p>
+	<p th:if="${complaintSucess}" class="error">Complaint Registered</p>
+	<table border="1" cellpadding="10">
+    <thead>
+        <tr>
+            <th> Complaint Id </th>
+            <th> Complaint </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${complaintList.empty}">
+            <td colspan="2"> No Complaints Registered </td>
+        </tr>
+        <tr th:each="complaint : ${complaintList}">
+            <td><span th:text="${complaint.complaint_id}">Complaint Id</span></td>
+            <td><span th:text="${complaint.complaint}">Complaint</span></td>
+        </tr>
+    </tbody>
+</table>
+	<a href="/complaint">Add Complaint</a>
+</body>
+</html>

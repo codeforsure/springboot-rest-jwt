@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Users</title>
+</head>
+<body>
+	<p align ="right"><a href="/logout">Logout</a></p>
+	<p align ="left"><a href="/complaint/add">All Registered Complaints</a></p>
+	<h1 >Complaints</h1>
+	<form th:action="@{/complaint}" th:object="${Complaint}" method ="post" id="Complaint">
+	<textarea rows="10" cols="100" id="complaint" placeholder="Enter Complaints here" name="complaint" form="Complaint" required ></textarea>
+	<input type="hidden" name="userid">
+	<br /><input type="submit" value="submit"></input>
+	</form>
+	
+</body>
+</html>
