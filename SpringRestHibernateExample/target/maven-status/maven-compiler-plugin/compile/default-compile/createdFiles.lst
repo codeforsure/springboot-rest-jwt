@@ -1,3 +1,4 @@
+com/SpringRestHibernate/SpringRestHibernateExample/model/username.class
 com/SpringRestHibernate/SpringRestHibernateExample/RegisterApplication.class
 com/SpringRestHibernate/SpringRestHibernateExample/jwt/JwtAuthTokenFilter.class
 com/SpringRestHibernate/SpringRestHibernateExample/dao/ComplaintDao.class
