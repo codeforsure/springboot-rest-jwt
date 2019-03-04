@@ -56,7 +56,7 @@ public class RegisterController {
 	Register registerg = new Register();
 	CustomUserDetails csd = new CustomUserDetails();
 	
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/register")
 	public String register(@RequestBody Register register) {
 		
@@ -66,12 +66,12 @@ public class RegisterController {
 		registerDao.save(register);
 		return "Registered";
 	}
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/login")
 	public String getLogin() {
 		return "login";
 	}
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/login")
 	public <T> ResponseEntity<?> login(@RequestBody LoginForm loginRequest) {
 		Authentication authentication = authenticationManager.authenticate(
@@ -86,7 +86,7 @@ public class RegisterController {
         String jwt = jwtProvider.generateJwtToken(authentication);
         return ResponseEntity.ok((T) new JwtResponse(jwt));
 	}
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/name")
 	public String getUsername(@RequestBody username name){
 		String username= name.getUsername();
@@ -94,43 +94,31 @@ public class RegisterController {
 		registerg = registerDao.findByUsername(username);
 		return "sucess";
 	}
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/complaint")
 	public String Complaint(@RequestBody Complaint complaint) {
-		System.out.println("summary"+complaint.getSummary());
-		String username= complaint.getRegister().getUserName();
-		System.out.println("user name from complaint"+username);
-		registerg = registerDao.findByUsername(username);
 		complaint.setRegister(registerg);
 		complaintDao.save(complaint);
 		return "sucess";
 	}
-	@CrossOrigin(origins = "*")
-	@PostMapping("/complaint/get")
-	public List<Complaint> getComplaints(@RequestBody username name){
-		String username= name.getUsername();
-		System.out.println("user name to get complaint"+username);
-		registerg = registerDao.findByUsername(username);
+	@CrossOrigin(origins = "http://localhost:3000")
+	@GetMapping("/complaint/add")
+	public List<Complaint> addComplaint(){
 		System.out.println("user id"+registerg.getRegister_id());
 		return complaintDao.findById(registerg.getRegister_id());
 	}
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/complaint/delete")
 	public String deleteComplaint(@RequestBody Complaint complaint) {
-		complaintDao.deleteById(complaint.getComplaint_id());
+		complaintDao.deleteById(complaint.getComplaint_id());;
 		return "sucess";
 	}
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/complaint/update")
 	public String updateComplaint(@RequestBody Complaint complaint) {
 		Complaint cmp = new Complaint();
-		String username= complaint.getRegister().getUserName();
-		System.out.println("user name from complaint update"+username);
-		registerg = registerDao.findByUsername(username);
 		cmp.setComplaint(complaint.getComplaint());
 		cmp.setComplaint_id(complaint.getComplaint_id());
-		cmp.setRegister(registerg);
-		cmp.setSummary(complaint.getSummary());
 		complaintDao.save(cmp);
 		return "sucess";
 	}

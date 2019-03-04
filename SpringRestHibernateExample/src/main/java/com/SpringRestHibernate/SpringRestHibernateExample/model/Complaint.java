@@ -14,15 +14,7 @@ public class Complaint {
 	private Integer complaint_id;
 	@Column(name="complaint")
 	private String complaint;
-	@Column(name="summary")
-	private String summary;
 	
-	public String getSummary() {
-		return summary;
-	}
-	public void setSummary(String summary) {
-		this.summary = summary;
-	}
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="register_id",referencedColumnName = "register_id")
 	private Register register;
