@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
  
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthEntryPoint.class);
-    
+   
     @Override
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
